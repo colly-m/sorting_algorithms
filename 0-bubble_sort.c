@@ -1,6 +1,22 @@
 #include "sort.h"
 
 /**
+ * swap_int - Function to swap integers in an array
+ * @ia: The first integer
+ * @ib: The second integer
+ * Return: Null
+ */
+void swap_int(int *ia, int *ib)
+{
+	int num;
+
+	num = *ia;
+	*ia = *ib;
+	*ib = num;
+}
+
+
+/**
  * bubble_sort - Function to sort integer array in ascending arder
  * using bubble sort algorithm
  * @array: pointer to array to sort through
