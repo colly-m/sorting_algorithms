@@ -34,9 +34,9 @@ void insertion_sort_list(listint_t **list);
 
 void selection_sort(int *array, size_t size);
 
+int tkn_arr(int *array, int fir, int sec, size_t size);
+void lomunto_recsort(int *array, int fir, int sec, size_t size);
 void quick_sort(int *array, size_t size);
-
-
 
 
 #endif
