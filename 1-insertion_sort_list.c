@@ -7,7 +7,7 @@
  * @sn: pointer to second node
  * Return: Null
  */
-void swap_sort(listint_t **h, listint_t **fn, listint_t *sn)
+void swap_sort(listint_t **hd, listint_t **fn, listint_t *sn)
 {
 	(*fn)->next = sn->next;
 	if (sn->next != NULL)
@@ -17,7 +17,7 @@ void swap_sort(listint_t **h, listint_t **fn, listint_t *sn)
 	if ((*fn)->prev != NULL)
 		(*fn)->prev->next = sn;
 	else
-		*h = sn;
+		*hd = sn;
 	(*fn)->prev = sn;
 	*fn = sn->prev;
 }
@@ -48,4 +48,4 @@ void insertion_sort_list(listint_t **list)
 			print_list((const listint_t *)*list);
 		}
 	}
-}
+i}
