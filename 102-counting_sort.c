@@ -1,6 +1,25 @@
 #include "sort.h"
 
 /**
+ * getz_max - Funtion to get maximum value in the array
+ * @array: pointer to the array
+ * @size: pointer to size of the array
+ * Return: maximum integer in array
+ */
+int getz_max(int *array, int size)
+{
+	int m = array[0], n = 1;
+
+	for (; n < size; n++)
+	{
+		if (array[n] > m)
+			m = array[n];
+	}
+	return (m);
+}
+
+
+/**
  * counting_sort - Function sort an array of integers in ascending order
  * using counting sort algorithm
  * @array: pointer to the array
@@ -9,43 +28,39 @@
  */
 void counting_sort(int *array, size_t size)
 {
-	size_t j;
-	int max = array[0], *counting_array, *output_array, i;
+	int m, *count, *output, n;
 
-	for (j = 1; j < size; j++)
-	{
-		if (array[j] > max)
-		{
-			max = array[j];
-		}
-	}
+	if (array == NULL || size < 2)
+		return;
 
-	counting_array = (int *)malloc((max + 1) * sizeof(int));
-
-	for (i = 0; i <= max; i++)
+	output = malloc(sizeof(int) * size);
+	if (output == NULL)
+		return;
+	m = getz_max(array, size);
+	count = malloc(sizeof(int) * (m + 1));
+	if (count == NULL)
 	{
-		counting_array[i] = 0;
-	}
-	for (j = 0; j < size; j++)
-	{
-		counting_array[array[j]]++;
-	}
-	for (i = 1; i <= max; i++)
-	{
-		counting_array[i] += counting_array[i - 1];
+		free(output);
+		return;
 	}
 
-	output_array = (int *)malloc(size * sizeof(int));
+	for (n = 0; n < (m + 1); n++)
+		count[n] = 0;
+	for (n = 0; n < (int)size; n++)
+		count[array[n]] += 1;
+	for (n = 0; n < (m + 1); n++)
+		count[n] += count[n - 1];
+	print_array(count, m + 1);
 
-	for (i = size - 1; i >= 0; i--)
+	for (n = 0; n < (int)size; n++)
 	{
-		output_array[counting_array[array[i]] - 1] = array[i];
-		counting_array[array[i]]--;
+		output[count[array[n]] - 1] = array[n];
+		count[array[n]] -= 1;
 	}
-	for (j = 0; j < size; j++)
-	{
-		array[j] = output_array[j];
-	}
-	free(counting_array);
-	free(output_array);
+
+	for (n = 0; n < (int)size; n++)
+		array[n] = output[n];
+
+	free(output);
+	free(count);
 }
