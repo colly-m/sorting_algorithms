@@ -46,5 +46,7 @@ void backward_swap(listint_t **hd, listint_t **tl, listint_t **cur);
 void cocktail_sort_list(listint_t **list);
 
 
+void counting_sort(int *array, size_t size);
+
 
 #endif
